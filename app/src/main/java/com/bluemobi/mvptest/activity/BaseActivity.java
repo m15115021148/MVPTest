@@ -14,9 +14,11 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Window;
-import android.widget.Toast;
 
 import com.bluemobi.mvptest.presenter.base.Presenter;
+import com.bluemobi.mvptest.presenter.loader.PresenterFactory;
+import com.bluemobi.mvptest.presenter.loader.PresenterLoader;
+import com.bluemobi.mvptest.util.ToastUtil;
 import com.bluemobi.mvptest.view.BaseView;
 
 import butterknife.ButterKnife;
@@ -52,6 +54,8 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     protected abstract int getLayoutId();
 
     protected abstract void initData();
+
+    protected abstract P getModelView();//binding model view
 
     private class MyBroaderEsc extends BroadcastReceiver {
 
@@ -95,7 +99,12 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     @NonNull
     @Override
     public Loader<P> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
+        return new PresenterLoader<>(this, new PresenterFactory<P>() {
+            @Override
+            public P create() {
+                return getModelView();
+            }
+        });
     }
 
     @Override
@@ -121,7 +130,7 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
 
     @Override
     public void showError(String errorMessage) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        ToastUtil.showBottomShort(errorMessage);
     }
 
     @Override
