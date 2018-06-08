@@ -1,6 +1,6 @@
 package com.bluemobi.mvptest.presenter;
 
-import com.bluemobi.mvptest.interfaces.LoginCallBack;
+import com.bluemobi.mvptest.presenter.http.HttpRequestCallBack;
 import com.bluemobi.mvptest.model.LoginModel;
 import com.bluemobi.mvptest.presenter.base.BasePresenter;
 import com.bluemobi.mvptest.view.LoginView;
@@ -21,7 +21,7 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
         checkViewAttach();
         mLoginView = getView();
         mLoginView.showLoading("Loading...");
-        mLoginModel.login(mLoginView.getUserBean(), new LoginCallBack() {
+        mLoginModel.login(mLoginView.getUserBean(), new HttpRequestCallBack() {
             @Override
             public void onSuccess() {
                 mLoginView.hideLoading();
@@ -32,6 +32,11 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
             public void onFailure(String error) {
                 mLoginView.hideLoading();
                 mLoginView.showError(error);
+            }
+
+            @Override
+            public void onCancel() {
+
             }
         });
     }

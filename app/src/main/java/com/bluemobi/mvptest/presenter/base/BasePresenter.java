@@ -5,7 +5,7 @@ import com.bluemobi.mvptest.view.BaseView;
 /**
  * Created by ${chenM} on ${2017}.
  */
-public class BasePresenter<V extends BaseView> implements Presenter<V> {
+public abstract class BasePresenter<V extends BaseView> implements Presenter<V> {
     private V view;
 
     @Override
@@ -32,8 +32,8 @@ public class BasePresenter<V extends BaseView> implements Presenter<V> {
         }
     }
 
-    public static class MvpViewNotAttachedException extends RuntimeException {
-        public MvpViewNotAttachedException() {
+    private static class MvpViewNotAttachedException extends RuntimeException {
+        private MvpViewNotAttachedException() {
             super("not binding view");
         }
     }

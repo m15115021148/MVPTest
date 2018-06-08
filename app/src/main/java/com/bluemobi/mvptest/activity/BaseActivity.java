@@ -1,6 +1,5 @@
 package com.bluemobi.mvptest.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -110,8 +109,8 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     }
 
     @Override
-    public void showLoading(String msg) {
-        mProgressDialog.setMessage(msg);
+    public void showLoading(String title) {
+        mProgressDialog.setMessage(title);
         if (!mProgressDialog.isShowing()) mProgressDialog.show();
     }
 
@@ -121,8 +120,8 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     }
 
     @Override
-    public void showError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    public void showError(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override

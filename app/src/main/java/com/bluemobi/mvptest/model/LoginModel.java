@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.bluemobi.mvptest.bean.LoginBean;
-import com.bluemobi.mvptest.interfaces.LoginCallBack;
+import com.bluemobi.mvptest.presenter.http.HttpRequestCallBack;
 
 /**
  * Created by ${chenM} on ${2017}.
@@ -14,7 +14,7 @@ public class LoginModel implements ILoginModel{
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
-    public void login(final LoginBean bean, final LoginCallBack callBack){
+    public void login(final LoginBean bean, final HttpRequestCallBack callBack){
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
