@@ -4,16 +4,17 @@ package com.bluemobi.mvptest.model;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.bluemobi.mvptest.bean.UserBean;
-import com.bluemobi.mvptest.interfaces.UserCallBack;
+import com.bluemobi.mvptest.bean.LoginBean;
+import com.bluemobi.mvptest.interfaces.LoginCallBack;
 
 /**
  * Created by ${chenM} on ${2017}.
  */
-public class UserModel {
+public class LoginModel implements ILoginModel{
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
-    public void login(final UserBean bean, final UserCallBack callBack){
+    @Override
+    public void login(final LoginBean bean, final LoginCallBack callBack){
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -23,7 +24,7 @@ public class UserModel {
                     callBack.onFailure("用户名不存在");
                 }
             }
-        },3000);
+        },2000);
     }
 
 }

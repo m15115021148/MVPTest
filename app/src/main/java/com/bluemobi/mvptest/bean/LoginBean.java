@@ -3,7 +3,7 @@ package com.bluemobi.mvptest.bean;
 /**
  * Created by ${chenM} on ${2017}.
  */
-public class UserBean {
+public class LoginBean {
     private String userName;
     private String userPassword;
 
