@@ -61,4 +61,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         bean.setUserPassword(mUserPwd.getText().toString());
         return bean;
     }
+
+    public void onRegister(View view) {
+        mPresenter.register();
+    }
 }

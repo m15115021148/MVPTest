@@ -8,4 +8,5 @@ import com.bluemobi.mvptest.presenter.http.HttpRequestCallBack;
  */
 public interface ILoginModel {
     void login(LoginBean bean , HttpRequestCallBack callBack);
+    void register(String userName,String password,HttpRequestCallBack callBack);
 }

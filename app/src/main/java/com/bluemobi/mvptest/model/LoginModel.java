@@ -24,7 +24,21 @@ public class LoginModel implements ILoginModel{
                     callBack.onFailure("用户名不存在");
                 }
             }
-        },5000);
+        },2000);
+    }
+
+    @Override
+    public void register(final String userName, String password, final HttpRequestCallBack callBack) {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if ("cmm".equals(userName)){
+                    callBack.onSuccess("登录成功");
+                }else {
+                    callBack.onFailure("登录失败");
+                }
+            }
+        },2000);
     }
 
 }

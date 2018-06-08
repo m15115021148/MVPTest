@@ -5,4 +5,5 @@ package com.bluemobi.mvptest.presenter;
  */
 public interface ILoginPresenter {
     void login();
+    void register();
 }

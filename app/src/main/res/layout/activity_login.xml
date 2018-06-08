@@ -29,4 +29,11 @@
         android:layout_margin="10dp"
         android:text="LOGIN" />
 
+    <Button
+        android:onClick="onRegister"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:text="REGISTER" />
+
 </LinearLayout>

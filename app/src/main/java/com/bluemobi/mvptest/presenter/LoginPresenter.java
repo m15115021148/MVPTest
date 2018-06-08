@@ -40,4 +40,29 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
             }
         });
     }
+
+    @Override
+    public void register() {
+        checkViewAttach();
+        mLoginView = getView();
+        mLoginView.showLoading("登录中...");
+        mLoginModel.register(mLoginView.getLoginData().getUserName(), mLoginView.getLoginData().getUserPassword(), new HttpRequestCallBack() {
+            @Override
+            public void onSuccess(String result) {
+                mLoginView.hideLoading();
+                mLoginView.showResult(result);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                mLoginView.hideLoading();
+                mLoginView.showError(error);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+    }
 }
