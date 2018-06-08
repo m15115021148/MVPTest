@@ -50,12 +50,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     }
 
     @Override
-    public void showResult(LoginBean bean) {
-        Toast.makeText(this, bean.getUserName() + " -- " + bean.getUserPassword(), Toast.LENGTH_SHORT).show();
+    public void showResult(String result) {
+        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public LoginBean getUserBean() {
+    public LoginBean getLoginData() {
         LoginBean bean = new LoginBean();
         bean.setUserName(mUserName.getText().toString());
         bean.setUserPassword(mUserPwd.getText().toString());

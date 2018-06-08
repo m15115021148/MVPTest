@@ -19,7 +19,7 @@ public class LoginModel implements ILoginModel{
             @Override
             public void run() {
                 if (bean.getUserName().equals("cmm") && bean.getUserPassword().equals("123456")){
-                    callBack.onSuccess();
+                    callBack.onSuccess("注册成功");
                 }else {
                     callBack.onFailure("用户名不存在");
                 }

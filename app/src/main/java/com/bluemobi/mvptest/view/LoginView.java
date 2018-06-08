@@ -6,6 +6,6 @@ import com.bluemobi.mvptest.bean.LoginBean;
  * Created by ${chenM} on ${2017}.
  */
 public interface LoginView extends BaseView{
-    void showResult(LoginBean t);
-    LoginBean getUserBean();
+    void showResult(String result);
+    LoginBean getLoginData();
 }

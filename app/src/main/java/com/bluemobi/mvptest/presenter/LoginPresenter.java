@@ -21,11 +21,11 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
         checkViewAttach();
         mLoginView = getView();
         mLoginView.showLoading("Loading...");
-        mLoginModel.login(mLoginView.getUserBean(), new HttpRequestCallBack() {
+        mLoginModel.login(mLoginView.getLoginData(), new HttpRequestCallBack() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(String result) {
                 mLoginView.hideLoading();
-                mLoginView.showResult(mLoginView.getUserBean());
+                mLoginView.showResult(result);
             }
 
             @Override
