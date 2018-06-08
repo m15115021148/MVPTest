@@ -1,5 +1,10 @@
 package com.bluemobi.mvptest.presenter;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.bluemobi.mvptest.activity.SecondActivity;
+import com.bluemobi.mvptest.application.MyApplication;
 import com.bluemobi.mvptest.presenter.http.HttpRequestCallBack;
 import com.bluemobi.mvptest.model.LoginModel;
 import com.bluemobi.mvptest.presenter.base.BasePresenter;
@@ -11,8 +16,10 @@ import com.bluemobi.mvptest.view.LoginView;
 public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPresenter {
     private LoginModel mLoginModel;
     private LoginView mLoginView;
+    private Context mContext;
 
-    public LoginPresenter(LoginModel model){
+    public LoginPresenter(Context context,LoginModel model){
+        this.mContext = context;
         this.mLoginModel = model;
     }
 
@@ -26,6 +33,8 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
             public void onSuccess(String result) {
                 mLoginView.hideLoading();
                 mLoginView.showResult(result);
+                Intent intent = new Intent(mContext,SecondActivity.class);
+                mContext.startActivity(intent);
             }
 
             @Override

@@ -31,7 +31,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     @Override
     protected LoginPresenter getModelView() {
-        return new LoginPresenter(new LoginModel());
+        return new LoginPresenter(this,new LoginModel());
     }
 
     public void onLogin(View view) {

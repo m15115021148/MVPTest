@@ -76,7 +76,7 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.attachView((V) this);
+        if (mPresenter!=null)mPresenter.attachView((V) this);
     }
 
     @Override
@@ -86,7 +86,7 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
 
     @Override
     protected void onDestroy() {
-        mPresenter.detachView();
+        if (mPresenter!=null)mPresenter.detachView();
         unregisterReceiver(receiver);
         super.onDestroy();
     }
