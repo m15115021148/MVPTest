@@ -10,6 +10,7 @@ import com.bluemobi.mvptest.view.LoginView;
  */
 public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPresenter {
     private LoginModel mLoginModel;
+    private LoginView mLoginView;
 
     public LoginPresenter(LoginModel model){
         this.mLoginModel = model;
@@ -18,7 +19,7 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
     @Override
     public void login(){
         checkViewAttach();
-        final LoginView mLoginView = getView();
+        mLoginView = getView();
         mLoginView.showLoading("Loading...");
         mLoginModel.login(mLoginView.getUserBean(), new LoginCallBack() {
             @Override

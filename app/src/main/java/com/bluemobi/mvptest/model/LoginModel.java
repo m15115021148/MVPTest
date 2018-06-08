@@ -24,7 +24,7 @@ public class LoginModel implements ILoginModel{
                     callBack.onFailure("用户名不存在");
                 }
             }
-        },2000);
+        },5000);
     }
 
 }

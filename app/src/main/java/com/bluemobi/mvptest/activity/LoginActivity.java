@@ -16,16 +16,22 @@ import com.bluemobi.mvptest.presenter.loader.PresenterFactory;
 import com.bluemobi.mvptest.presenter.loader.PresenterLoader;
 import com.bluemobi.mvptest.view.LoginView;
 
+import butterknife.BindView;
+
 public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> implements LoginView {
-    private EditText mUserName;
-    private EditText mUserPwd;
+    @BindView(R.id.userName)
+    public EditText mUserName;
+    @BindView(R.id.password)
+    public EditText mUserPwd;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        mUserName = findViewById(R.id.userName);
-        mUserPwd = findViewById(R.id.password);
+    protected int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     public void onLogin(View view) {
