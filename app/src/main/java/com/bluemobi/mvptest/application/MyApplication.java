@@ -1,9 +1,12 @@
 package com.bluemobi.mvptest.application;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
 import com.bluemobi.mvptest.log.LogUtil;
@@ -74,6 +77,15 @@ public class MyApplication extends Application {
             e.printStackTrace();
         }
         return versionCode;
+    }
+
+    /**
+     * 获取手机设备id
+     */
+    @SuppressLint("MissingPermission")
+    public String getDeviceID(Activity activity){
+        TelephonyManager tm = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        return tm.getDeviceId();
     }
 
 }

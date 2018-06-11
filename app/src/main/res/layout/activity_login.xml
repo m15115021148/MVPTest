@@ -14,13 +14,6 @@
         android:layout_margin="10dp"
         android:hint="userName" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:hint="password" />
-
     <Button
         android:onClick="onLogin"
         android:id="@+id/login"
@@ -28,12 +21,5 @@
         android:layout_height="60dp"
         android:layout_margin="10dp"
         android:text="LOGIN" />
-
-    <Button
-        android:onClick="onRegister"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:text="REGISTER" />
 
 </LinearLayout>

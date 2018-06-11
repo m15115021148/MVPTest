@@ -2,22 +2,24 @@ package com.bluemobi.mvptest.activity;
 
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.bluemobi.mvptest.R;
-import com.bluemobi.mvptest.bean.LoginBean;
-import com.bluemobi.mvptest.model.LoginModel;
-import com.bluemobi.mvptest.presenter.LoginPresenter;
+import com.bluemobi.mvptest.application.MyApplication;
+import com.bluemobi.mvptest.config.RequestCode;
+import com.bluemobi.mvptest.mvp.model.LoginModel;
+import com.bluemobi.mvptest.mvp.presenter.presenter.LoginPresenter;
 import com.bluemobi.mvptest.util.ToastUtil;
-import com.bluemobi.mvptest.view.LoginView;
+import com.bluemobi.mvptest.mvp.view.LoginView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> implements LoginView {
     @BindView(R.id.userName)
     public EditText mUserName;
-    @BindView(R.id.password)
-    public EditText mUserPwd;
 
     @Override
     protected int getLayoutId() {
@@ -44,14 +46,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     }
 
     @Override
-    public LoginBean getLoginData() {
-        LoginBean bean = new LoginBean();
-        bean.setUserName(mUserName.getText().toString());
-        bean.setUserPassword(mUserPwd.getText().toString());
-        return bean;
+    public String getLogin() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("token",MyApplication.getInstance().getDeviceID(this));
+        map.put("lang", RequestCode.USER_LANG);
+        map.put("bundle_id",RequestCode.USER_BUNDLE_ID);
+        map.put("name",mUserName.getText().toString());
+        map.put("versionCode", MyApplication.getInstance().getVersionCode());
+        map.put("versionName",MyApplication.getInstance().getVersionName());
+        map.put("appKey",RequestCode.APP_KEY);
+        map.put("appSecret",RequestCode.APP_SECRET);
+        return JSON.toJSONString(map);
     }
 
-    public void onRegister(View view) {
-        mPresenter.register();
-    }
 }

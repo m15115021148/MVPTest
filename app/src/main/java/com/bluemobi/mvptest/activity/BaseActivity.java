@@ -15,11 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Window;
 
-import com.bluemobi.mvptest.presenter.base.Presenter;
-import com.bluemobi.mvptest.presenter.loader.PresenterFactory;
-import com.bluemobi.mvptest.presenter.loader.PresenterLoader;
+import com.bluemobi.mvptest.mvp.presenter.base.Presenter;
+import com.bluemobi.mvptest.mvp.presenter.loader.PresenterFactory;
+import com.bluemobi.mvptest.mvp.presenter.loader.PresenterLoader;
 import com.bluemobi.mvptest.util.ToastUtil;
-import com.bluemobi.mvptest.view.BaseView;
+import com.bluemobi.mvptest.mvp.view.BaseView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -53,9 +53,9 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
 
     protected abstract int getLayoutId();
 
-    protected abstract void initData();
-
     protected abstract P getModelView();//binding model view
+
+    protected abstract void initData();
 
     private class MyBroaderEsc extends BroadcastReceiver {
 
