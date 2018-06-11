@@ -118,6 +118,12 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     }
 
     @Override
+    public void showLoading() {
+        mProgressDialog.setMessage("Loading...");
+        if (!mProgressDialog.isShowing()) mProgressDialog.show();
+    }
+
+    @Override
     public void showLoading(String title) {
         mProgressDialog.setMessage(title);
         if (!mProgressDialog.isShowing()) mProgressDialog.show();
