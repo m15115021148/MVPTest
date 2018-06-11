@@ -1,5 +1,6 @@
 package com.bluemobi.mvptest.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -59,4 +60,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         return JSON.toJSONString(map);
     }
 
+    @Override
+    protected void onDestroy() {
+        Intent intent = new Intent();
+        intent.setAction(TAG_ESC_ACTIVITY);
+        sendBroadcast(intent);
+        finish();
+        super.onDestroy();
+    }
 }
