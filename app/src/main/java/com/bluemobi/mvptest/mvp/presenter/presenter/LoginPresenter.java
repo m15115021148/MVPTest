@@ -13,10 +13,8 @@ import com.bluemobi.mvptest.mvp.view.LoginView;
 public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPresenter {
     private LoginModel mLoginModel;
     private LoginView mLoginView;
-    private Context mContext;
 
-    public LoginPresenter(Context context,LoginModel model){
-        this.mContext = context;
+    public LoginPresenter(LoginModel model){
         this.mLoginModel = model;
     }
 
