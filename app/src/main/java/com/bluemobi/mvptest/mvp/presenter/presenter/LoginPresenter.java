@@ -24,23 +24,15 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
     public void login(){
         checkViewAttach();
         mLoginView = getView();
-        mLoginView.showLoading();
         mLoginModel.login(mLoginView.getLogin(), new HttpRequestCallBack() {
             @Override
             public void onSuccess(String result) {
-                mLoginView.hideLoading();
                 mLoginView.showResult(result);
             }
 
             @Override
             public void onFailure(String error) {
-                mLoginView.hideLoading();
-                mLoginView.showError(error);
-            }
-
-            @Override
-            public void onCancel() {
-
+                mLoginView.loadingError(error);
             }
         });
     }

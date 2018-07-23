@@ -6,5 +6,4 @@ package com.bluemobi.mvptest.mvp.presenter.callback;
 public interface HttpRequestCallBack {
     void onSuccess(String result);
     void onFailure(String error);
-    void onCancel();
 }

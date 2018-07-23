@@ -1,6 +1,5 @@
 package com.bluemobi.mvptest.activity;
 
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Window;
 
+import com.bluemobi.mvptest.log.LogUtil;
 import com.bluemobi.mvptest.mvp.presenter.base.Presenter;
 import com.bluemobi.mvptest.mvp.presenter.loader.PresenterFactory;
 import com.bluemobi.mvptest.mvp.presenter.loader.PresenterLoader;
@@ -29,9 +29,8 @@ import butterknife.Unbinder;
  */
 public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> extends
         AppCompatActivity implements BaseView, LoaderManager.LoaderCallbacks<P> {
-    protected static final String TAG_ESC_ACTIVITY = "com.broader.esc";
+    private static final String TAG_ESC_ACTIVITY = "com.broader.esc";
     private static final int BASE_LOADER_ID = 1000;//loader的id值
-    private ProgressDialog mProgressDialog;
     protected P mPresenter;
     protected boolean startBlockKeys = false;
     private MyBroaderEsc receiver;//广播
@@ -43,7 +42,6 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutId());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        mProgressDialog = new ProgressDialog(this);
         getSupportLoaderManager().initLoader(BASE_LOADER_ID, null, this);
         receiver = new MyBroaderEsc();
         registerReceiver(receiver, new IntentFilter(TAG_ESC_ACTIVITY));
@@ -61,11 +59,19 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent != null) {
+            if (TAG_ESC_ACTIVITY.equals(intent.getAction())){
                 butterKnife.unbind();
                 finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
             }
         }
+    }
+
+    protected void exitApp(){
+        Intent intent = new Intent();
+        intent.setAction(TAG_ESC_ACTIVITY);
+        sendBroadcast(intent);
     }
 
     @Override
@@ -118,24 +124,7 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     }
 
     @Override
-    public void showLoading() {
-        mProgressDialog.setMessage("Loading...");
-        if (!mProgressDialog.isShowing()) mProgressDialog.show();
-    }
-
-    @Override
-    public void showLoading(String title) {
-        mProgressDialog.setMessage(title);
-        if (!mProgressDialog.isShowing()) mProgressDialog.show();
-    }
-
-    @Override
-    public void hideLoading() {
-        if (mProgressDialog.isShowing()) mProgressDialog.dismiss();
-    }
-
-    @Override
-    public void showError(String errorMessage) {
+    public void loadingError(String errorMessage) {
         ToastUtil.showBottomShort(errorMessage);
     }
 

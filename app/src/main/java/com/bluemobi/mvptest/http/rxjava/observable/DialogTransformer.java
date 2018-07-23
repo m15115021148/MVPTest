@@ -1,7 +1,7 @@
 package com.bluemobi.mvptest.http.rxjava.observable;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 
 import io.reactivex.Observable;
@@ -20,20 +20,20 @@ public class DialogTransformer {
 
     private static final String DEFAULT_MSG = "Load...";
 
-    private Activity activity;
+    private Context activity;
     private String msg;
     private boolean cancelable;
     private ProgressDialog progressDialog;
 
-    public DialogTransformer(Activity activity) {
+    public DialogTransformer(Context activity) {
         this(activity, DEFAULT_MSG);
     }
 
-    public DialogTransformer(Activity activity, String msg) {
+    public DialogTransformer(Context activity, String msg) {
         this(activity, msg, false);
     }
 
-    public DialogTransformer(Activity activity, String msg, boolean cancelable) {
+    public DialogTransformer(Context activity, String msg, boolean cancelable) {
         this.activity = activity;
         this.msg = msg;
         this.cancelable = cancelable;

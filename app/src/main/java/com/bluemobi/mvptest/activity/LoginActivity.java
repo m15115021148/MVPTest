@@ -34,7 +34,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     @Override
     protected LoginPresenter getModelView() {
-        return new LoginPresenter(this,new LoginModel());
+        return new LoginPresenter(this,new LoginModel(this));
     }
 
     public void onLogin(View view) {
@@ -61,11 +61,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
     }
 
     @Override
-    protected void onDestroy() {
-        Intent intent = new Intent();
-        intent.setAction(TAG_ESC_ACTIVITY);
-        sendBroadcast(intent);
-        finish();
-        super.onDestroy();
+    public void onBackPressed() {
+        exitApp();
+        super.onBackPressed();
     }
 }
