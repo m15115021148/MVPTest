@@ -62,7 +62,7 @@ public class UpLoadHelper {
             //创建Request
             Request request = new Request.Builder().url(url).post(body).build();
             //单独设置参数 比如读取超时时间
-            call = initClientCertificate(listener).newBuilder().writeTimeout(50, TimeUnit.SECONDS).build().newCall(request);
+            call = initClient(listener).newBuilder().writeTimeout(50, TimeUnit.SECONDS).build().newCall(request);
             Observable.just(call)
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
@@ -142,6 +142,11 @@ public class UpLoadHelper {
                 .build();
     }
 
+    /**
+     * init ssl certs
+     * @param upLoadListener
+     * @return
+     */
     private OkHttpClient initClientCertificate(final UpLoadListener upLoadListener) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new HeadInterceptor());

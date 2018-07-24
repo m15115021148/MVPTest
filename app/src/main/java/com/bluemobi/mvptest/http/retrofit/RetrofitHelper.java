@@ -21,7 +21,7 @@ public class RetrofitHelper {
     private RetrofitHelper() {
     }
 
-    static {
+    private static void init() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(WebConfig.getHostName())
                 .client(OkHttpHelper.getClient())
@@ -33,6 +33,11 @@ public class RetrofitHelper {
     }
 
     public static Retrofit getRetrofit() {
+        if (retrofit == null) {
+            synchronized (RetrofitHelper.class) {
+                init();
+            }
+        }
         return retrofit;
     }
 

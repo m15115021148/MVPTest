@@ -32,9 +32,9 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     private static final String TAG_ESC_ACTIVITY = "com.broader.esc";
     private static final int BASE_LOADER_ID = 1000;//loader的id值
     protected P mPresenter;
-    protected boolean startBlockKeys = false;
-    private MyBroaderEsc receiver;//广播
-    private Unbinder butterKnife;//取消绑定
+    protected boolean startBlockKeys = false;//is show can click keyBack
+    private MyBroaderEsc receiver;//custom exit broadcast
+    private Unbinder butterKnife;//unbinding butterKnife
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,11 +49,11 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
         initData();
     }
 
-    protected abstract int getLayoutId();
+    protected abstract int getLayoutId();//init layout xml
 
     protected abstract P getModelView();//binding model view
 
-    protected abstract void initData();
+    protected abstract void initData();//binding data
 
     private class MyBroaderEsc extends BroadcastReceiver {
 
@@ -68,6 +68,9 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
         }
     }
 
+    /**
+     * exit all activity
+     */
     protected void exitApp(){
         Intent intent = new Intent();
         intent.setAction(TAG_ESC_ACTIVITY);

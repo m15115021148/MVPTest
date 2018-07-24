@@ -41,12 +41,10 @@ public class DialogTransformer {
 
     public <T> ObservableTransformer<T, T> transformer() {
         return new ObservableTransformer<T, T>() {
-
-
             @Override
             public ObservableSource<T> apply(final Observable<T> upstream) {
 
-                return  upstream.doOnSubscribe(new Consumer<Disposable>() {
+                return upstream.doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(@NonNull final Disposable disposable) throws Exception {
                         progressDialog = ProgressDialog.show(activity, null, msg, true, cancelable);
