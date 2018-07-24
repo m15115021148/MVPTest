@@ -19,6 +19,7 @@ import java.util.Map;
 import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> implements LoginView {
+    private LoginActivity mContext;
     @BindView(R.id.userName)
     public EditText mUserName;
 
@@ -29,7 +30,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     @Override
     protected void initData() {
-
+        mContext = this;
     }
 
     @Override
@@ -39,6 +40,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
 
     public void onLogin(View view) {
         mPresenter.login();
+    }
+
+    public void onDownload(View view) {
+        Intent intent = new Intent(mContext,DownloadActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -65,4 +71,5 @@ public class LoginActivity extends BaseActivity<LoginPresenter, LoginView> imple
         exitApp();
         super.onBackPressed();
     }
+
 }

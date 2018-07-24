@@ -1,5 +1,7 @@
 package com.bluemobi.mvptest.http.download;
 
+import android.text.TextUtils;
+
 import com.bluemobi.mvptest.http.download.listener.DownloadListener;
 import com.bluemobi.mvptest.http.download.util.FileUtils;
 import com.bluemobi.mvptest.http.okhttp.certificate.TrustAllCerts;
@@ -42,6 +44,11 @@ public class DownloadHelper {
     }
 
     public void downloadFile(final DownloadListener downloadListener) {
+
+        if (TextUtils.isEmpty(url)){
+            downloadListener.onFailure(new Throwable("download url is null"));
+            return;
+        }
 
         Request request = new Request.Builder().url(url).build();
         call = initClient(downloadListener).newCall(request);
@@ -103,7 +110,7 @@ public class DownloadHelper {
 
         return new OkHttpClient.Builder()
                 .addInterceptor(new HeadInterceptor())
-                .addInterceptor(new LogInterceptor())
+//                .addInterceptor(new LogInterceptor())//open log is  oom
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
