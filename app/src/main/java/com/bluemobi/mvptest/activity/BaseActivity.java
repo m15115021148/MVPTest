@@ -124,8 +124,8 @@ public abstract class BaseActivity<P extends Presenter<V>, V extends BaseView> e
     }
 
     @Override
-    public void loadingError(String errorMessage) {
-        ToastUtil.showBottomShort(errorMessage);
+    public void onFailure(String error) {
+        ToastUtil.showBottomShort(error);
     }
 
     @Override

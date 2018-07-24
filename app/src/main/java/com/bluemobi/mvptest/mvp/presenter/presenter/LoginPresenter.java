@@ -1,7 +1,5 @@
 package com.bluemobi.mvptest.mvp.presenter.presenter;
 
-import android.content.Context;
-
 import com.bluemobi.mvptest.mvp.presenter.callback.HttpRequestCallBack;
 import com.bluemobi.mvptest.mvp.model.LoginModel;
 import com.bluemobi.mvptest.mvp.presenter.base.BasePresenter;
@@ -30,7 +28,7 @@ public class LoginPresenter extends BasePresenter<LoginView> implements ILoginPr
 
             @Override
             public void onFailure(String error) {
-                mLoginView.loadingError(error);
+                mLoginView.onFailure(error);
             }
         });
     }
